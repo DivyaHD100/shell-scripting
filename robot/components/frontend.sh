@@ -3,7 +3,7 @@
 #set -e
 COMPONENT=frontend
 
-LOGFILE="/tmp/$Component.log"
+LOGFILE="/tmp/$COMPONENT.log"
 ID=$(id -u)
 
 if [ "$ID" -ne 0 ]; then
@@ -19,27 +19,27 @@ Stat(){
     fi 
 }
 echo -n "Installing the nginx:" 
-yum install nginx -y &>> $Logfile
+yum install nginx -y &>> $LOGFILE
 Stat $?
 
-echo -n "Downloading the $Component component:"
-curl -s -L -o /tmp/$Component.zip "https://github.com/stans-robot-project/$Component/archive/main.zip"
+echo -n "Downloading the $COMPONENT component:"
+curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
 Stat $?
 
-echo -n "Performing cleanup of old $Component content:"
+echo -n "Performing cleanup of old $COMPONENT content:"
 cd /usr/share/nginx/html
-rm -rf * &>> $Logfile
+rm -rf * &>> $LOGFILE
 Stat $?
 
-echo -n "Copying the downloaded $Component content:"
-unzip /tmp/$Component.zip &>> $Logfile
-mv $Component-main/* .
+echo -n "Copying the downloaded $COMPONENT content:"
+unzip /tmp/$COMPONENT.zip &>> $LOGFILE
+mv $COMPONENT-main/* .
 mv static/* .
-rm -rf $Component-main README.md
+rm -rf $COMPONENT-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 Stat $?
 
 echo -n "Starting the Nginx:"
-systemctl enable nginx &>> $Logfile
-systemctl start nginx &>> $Logfile
+systemctl enable nginx &>> $LOGFILE
+systemctl start nginx &>> $LOGFILE
 Stat $?
