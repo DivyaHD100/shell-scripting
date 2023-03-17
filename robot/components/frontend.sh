@@ -9,9 +9,9 @@ if [ "$ID" -ne 0 ]; then
 fi
 Stat(){
     if [ $1 -eq 0 ]; then
-        echo "\e[32m Success \e[0m"
+        echo -e "\e[32m Success \e[0m"
     else
-        echo "\e[31m failure \e[0m"
+        echo -e "\e[31m failure \e[0m"
         exit 2
     fi 
 }
