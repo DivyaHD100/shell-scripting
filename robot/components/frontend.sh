@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #set -e
-Component = frontend
-Logfile = "/tmp/$Component.log"
+COMPONENT = "frontend"
+LOGFILE = "/tmp/$Component.log"
 ID=$(id -u)
 
 if [ "$ID" -ne 0 ]; then
