@@ -36,7 +36,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo -n "Configuring the $COMPONENT repo:"
-curl curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
+curl curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip" &>>$LOGFILE
 Stat $?
 
 echo -n "Extracting the $COMPONENT in the $APPUSER directory:"
