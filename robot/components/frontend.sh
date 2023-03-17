@@ -1,9 +1,9 @@
 #!/bin/bash
 
-USER_ID=$(id -u)
+ID=$(id -u)
 
-if ["USER_ID" -ne 0]; then
-    echo -e "\e[32m you need to execute this script as root user or use a sudo as prefix \e[0m"
+if ["$ID" -ne 0]; then
+    echo -e "\e[30m you need to execute this script as root user or use a sudo as prefix \e[0m"
     exit 1
 fi
 
