@@ -29,7 +29,7 @@ yum install nodejs -y &>>$LOGFILE
 Stat $?
 
 id $APPUSER
-if [ $? -ne 0]; then   
+if [ $? -ne 0 ]; then   
     echo -n "Creating the Application User Account:"
     useradd $APPUSER &>>$LOGFILE
     Stat $?
@@ -42,3 +42,4 @@ Stat $?
 echo -n "Extracting the $COMPONENT in the $APPUSER directory:"
 cd /home/$APPUSER 
 unzip -o /tmp/$COMPONENT.zip &>>$LOGFILE
+Stat $?
