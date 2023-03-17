@@ -11,11 +11,12 @@ fi
 echo -n "Installing the nginx:" 
 yum install nginx -y &>> /tmp/frontend.log
 Stat(){
-if [ $? -eq 0 ]; then
-    echo "\e[32m Success \e[0m"
-else
-    echo "\e[31m failure \e[0m"
-fi 
+    if [ $1 -eq 0 ]; then
+        echo "\e[32m Success \e[0m"
+    else
+        echo "\e[31m failure \e[0m"
+        exit 2
+    fi 
 }
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 cd /usr/share/nginx/html
