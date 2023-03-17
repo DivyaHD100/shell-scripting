@@ -21,7 +21,7 @@ Stat(){
 }
 
 echo -n "Configuring Nodejs repo:"
-curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - &>>$LOGFILE
+curl --silent --location https://rpm.nodesource.com/setup_16.x | bash - &>>$LOGFILE
 Stat $?
 
 echo -n "Installing the Nodejs:"
