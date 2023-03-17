@@ -7,9 +7,6 @@ if [ "$ID" -ne 0 ]; then
     echo -e "\e[31m you need to execute this script as root user or use a sudo as prefix \e[0m"
     exit 1
 fi
-
-echo -n "Installing the nginx:" 
-yum install nginx -y &>> /tmp/frontend.log
 Stat(){
     if [ $1 -eq 0 ]; then
         echo "\e[32m Success \e[0m"
@@ -18,6 +15,10 @@ Stat(){
         exit 2
     fi 
 }
+echo -n "Installing the nginx:" 
+yum install nginx -y &>> /tmp/frontend.log
+Stat $?
+
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 cd /usr/share/nginx/html
 
