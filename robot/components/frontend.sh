@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -e
 ID=$(id -u)
 
 if ["$ID" -ne 0]; then
