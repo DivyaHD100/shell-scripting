@@ -36,6 +36,6 @@ echo -n "Configuring the $COMPONENT repo:"
 curl curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip" &>>$LOGFILE
 Stat $?
 
-echo -n "Extrracting the $COMPONENT in the $APPUSER directory:"
-$ cd /home/$APPUSER 
-$ unzip -o /tmp/$COMPONENT.zip &>>$LOGFILE
+echo -n "Extracting the $COMPONENT in the $APPUSER directory:"
+cd /home/$APPUSER 
+unzip -o /tmp/$COMPONENT.zip &>>$LOGFILE
