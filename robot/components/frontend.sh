@@ -3,7 +3,7 @@
 set -e
 ID=$(id -u)
 
-if ["$ID" -ne 0]; then
+if [ "$ID" -ne 0 ]; then
     echo -e "\e[30m you need to execute this script as root user or use a sudo as prefix \e[0m"
     exit 1
 fi
