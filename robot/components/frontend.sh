@@ -8,7 +8,15 @@ if [ "$ID" -ne 0 ]; then
     exit 1
 fi
 
+echo -n "Installing the nginx:" 
 yum install nginx -y &>> /tmp/frontend.log
+Stat(){
+if [ $? -eq 0 ]; then
+    echo "\e[32m Success \e[0m"
+else
+    echo "\e[31m failure \e[0m"
+fi 
+}
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 cd /usr/share/nginx/html
 
@@ -20,4 +28,4 @@ rm -rf frontend-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 
 systemctl enable nginx &>> /tmp/frontend.log
-systemctl start nginx  &>> /tmp/frontend.log
+systemctl start nginx &>> /tmp/frontend.log
