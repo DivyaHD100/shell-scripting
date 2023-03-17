@@ -28,7 +28,7 @@ echo -n "Installing the Nodejs:"
 yum install nodejs -y &>>$LOGFILE
 Stat $?
 
-id $APPUSER
+id $APPUSER &>>$LOGFILE
 if [ $? -ne 0 ]; then   
     echo -n "Creating the Application User Account:"
     useradd $APPUSER &>>$LOGFILE
@@ -40,6 +40,6 @@ curl curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$
 Stat $?
 
 echo -n "Extracting the $COMPONENT in the $APPUSER directory:"
-cd /home/$APPUSER 
+cd /home/$APPUSER
 unzip -o /tmp/$COMPONENT.zip &>>$LOGFILE
-Stat $?
+Stat $? 
