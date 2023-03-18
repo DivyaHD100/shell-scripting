@@ -41,5 +41,27 @@ Stat $?
 
 echo -n "Extracting the $COMPONENT in the $APPUSER directory:"
 cd /home/$APPUSER
+rm -rf /home/$APPUSER/$COMPONENT &>>$LOGFILE
 unzip -o /tmp/$COMPONENT.zip &>>$LOGFILE
+Stat $?
+
+echo -n "Configuring the permissions:"
+mv /home/$APPUSER/$COMPONENT-main /home/$APPUSER/$COMPONENT
+chown -R $APPUSER:$APPUSER /home/$APPUSER/$COMPONENT
+Stat $?
+
+echo -n "Installing the $COMPONENT Application:"
+cd /home/$APPUSER/$COMPONENT
+npm install &>>$LOGFILE
+Stat $?
+
+echo -n "Updating the systemd file with DB details:"
+sed -i -e 's/MONGO_DSNAME/mongodb.roboshop.internal' /home/$APPUSER/$COMPONENT/systemd.service
+mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
+Stat $?
+
+echo -n "Starting the $COMPONENT service:"
+systemctl Daemon-Reload &>>$LOGFILE
+systemctl start catalogue &>>$LOGFILE
+systemctl enable catalogue &>>$LOGFILE
 Stat $?
