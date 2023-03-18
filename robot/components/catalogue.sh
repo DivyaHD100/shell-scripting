@@ -61,7 +61,7 @@ mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.serv
 Stat $?
 
 echo -n "Starting the $COMPONENT service:"
-systemctl Daemon-Reload &>>$LOGFILE
+systemctl daemon-reload &>>$LOGFILE
 systemctl enable $COMPONENT &>>$LOGFILE
 systemctl restart $COMPONENT &>>$LOGFILE
 Stat $?
