@@ -45,6 +45,10 @@ rm -rf /home/$APPUSER/$COMPONENT
 unzip -o /tmp/$COMPONENT.zip &>>$LOGFILE
 Stat $?
 
+echo -n "Configuring the permissions:"
+mv /home/$APPUSER/$COMPONENT-main /home/$APPUSER/$COMPONENT
+chown -R $APPUSER:$APPUSER /home/$APPUSER/$COMPONENT
+Stat $?
 
 # echo -n "Installing the $COMPONENT Application:"
 # cd /home/$APPUSER/$COMPONENT
