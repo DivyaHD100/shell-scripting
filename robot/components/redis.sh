@@ -21,7 +21,7 @@ Stat(){
 }
 
 echo -n "Configuring $COMPONENT repo:"
-curl -L https://raw.githubusercontent.com/stans-robot-project/redis/main/redis.repo -o /etc/yum.repos.d/redis.repo
+curl -L https://raw.githubusercontent.com/stans-robot-project/redis/main/redis.repo -o /etc/yum.repos.d/redis.repo  &>>$LOGFILE
 Stat $?
 
 echo -n "Installing $COMPONENT server:"
@@ -35,5 +35,5 @@ Stat $?
 
 echo -n "Starting the $COMPONENT service:"
 systemctl daemon-reload &>>$LOGFILE
-systemctl restart $COMPONENT &>>$LOGFILE
+systemctl start $COMPONENT &>>$LOGFILE
 Stat $?
