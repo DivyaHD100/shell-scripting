@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #set -e
-COMPONENT=catalogue
+COMPONENT=redis
 LOGFILE="/tmp/$COMPONENT.log"
 
 
@@ -35,5 +35,5 @@ Stat $?
 
 echo -n "Starting the $COMPONENT service:"
 systemctl daemon-reload &>>$LOGFILE
-systemctl start $COMPONENT &>>$LOGFILE
+systemctl restart $COMPONENT &>>$LOGFILE
 Stat $?
