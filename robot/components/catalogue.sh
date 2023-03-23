@@ -46,7 +46,6 @@ unzip -o /tmp/$COMPONENT.zip &>>$LOGFILE
 Stat $?
 
 echo -n "Configuring the permissions:"
-mv /home/$APPUSER/$COMPONENT-main /home/$APPUSER/$COMPONENT
 chown -R $APPUSER:$APPUSER /home/$APPUSER/$COMPONENT
 Stat $?
 
