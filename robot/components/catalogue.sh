@@ -35,7 +35,7 @@ if [ $? -ne 0 ]; then
     Stat $?
 fi
 
-echo -n "Configuring the $COMPONENT repo:"
+echo -n "Downloading the $COMPONENT repo:"
 curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
 Stat $?
 
