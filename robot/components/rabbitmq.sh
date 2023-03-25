@@ -26,7 +26,7 @@ if [ $? -ne 0 ]; then
     Stat $?
 fi
 
-echon -n "Adding required privileges to the $APPUSER: "
+echo -n "Adding required privileges to the $APPUSER: "
 rabbitmqctl set_user_tags roboshop administrator
 rabbitmqlctl set_permissions -p / roboshop ".*" ".*" ".*"
 Stat $?
