@@ -72,6 +72,34 @@ MVN_PACKAGE(){
     Stat $? 
 }
 
+PYTHON() {
+    echo -n "Installing Python and dependencies :"
+    yum install python36 gcc python3-devel -y  &>> $LOGFILE
+    stat $?
+
+    # Calling Create-User Functon 
+    CREATE_USER
+
+    # Calling Download_And_Extract Function
+    DOWNLOAD_AND_EXTRACT
+
+    echo -n "Installing $COMPONENT :"
+    cd /home/roboshop/$COMPONENT/ 
+    pip3 install -r requirements.txt   &>> $LOGFILE
+    stat $? 
+
+    USERID=$(id -u roboshop)
+    GROUPID=$(id -g roboshop)
+    
+    echo -n "Updating the $COMPONENT.ini file :"
+    sed -i -e "/^uid/ c uid=${USERID}" -e "/^gid/ c gid=${GROUPID}"  /home/$APPUSER/$COMPONENT/$COMPONENT.ini 
+
+    # Calling Config-Svc Function
+    CONFIG_SVC
+
+}
+
+
 JAVA() {
     echo -n "Installing the MAVEN:"
     yum install maven -y &>>$LOGFILE
