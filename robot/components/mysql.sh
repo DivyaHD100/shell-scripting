@@ -19,7 +19,7 @@ Stat $?
 
 echo -n "Grab $COMPONENT default password :"
 DEFAULT_ROOT_PWD=$(grep "temporary password" /var/log/mysqld.log | awk '{print $NF}')
-stat $? 
+Stat $? 
 
 # This should only run for the first time or when the default password is not changed.
 echo "show databases;" | mysql -uroot -pRoboShop@1   &>> $LOGFILE 
@@ -27,7 +27,7 @@ if [ $? -ne 0 ] ; then
 
     echo -n "Password Reset of root user :"
     echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" | mysql --connect-expired-password -uroot -p${DEFAULT_ROOT_PWD} &>> $LOGFILE 
-    stat $?
+    Stat $?
 
 fi 
 
@@ -37,21 +37,21 @@ if [ $? -eq 0 ] ; then
 
     echo -n "Uninstalling Password Validation Plugin :"
     echo "uninstall plugin validate_password;" | mysql -uroot -pRoboShop@1   &>> $LOGFILE
-    stat $?
+    Stat $?
 
 fi 
 
 echo -n "Downloading the $COMPONENT Schema :"
 curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"  &>> $LOGFILE
-stat $? 
+Stat $? 
 
 echo -n "Extracting the $COMPONENT Schema :"
 cd /tmp 
 unzip -o /tmp/$COMPONENT.zip &>> $LOGFILE
-stat $? 
+Stat $? 
 
 echo -n "Injecting the schema :"
 cd $COMPONENT-main
 mysql -uroot -pRoboShop@1 < shipping.sql 
-stat $?
+Stat $?
 

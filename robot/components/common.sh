@@ -75,7 +75,7 @@ MVN_PACKAGE(){
 PYTHON() {
     echo -n "Installing Python and dependencies :"
     yum install python36 gcc python3-devel -y  &>> $LOGFILE
-    stat $?
+    Stat $?
 
     # Calling Create-User Functon 
     CREATE_USER
@@ -86,7 +86,7 @@ PYTHON() {
     echo -n "Installing $COMPONENT :"
     cd /home/roboshop/$COMPONENT/ 
     pip3 install -r requirements.txt   &>> $LOGFILE
-    stat $? 
+    Stat $? 
 
     USERID=$(id -u roboshop)
     GROUPID=$(id -g roboshop)
