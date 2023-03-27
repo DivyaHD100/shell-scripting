@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [-z "$1"]; then
+if [ -z "$1" ]; then
     echo -e "\e[31m Component name is required \e[0m\t\t"
     echo -e "\t\t\t \e[32m Sample usage is: $bash create-ec2.sh user \e[0m\t\t"
     exit 1
