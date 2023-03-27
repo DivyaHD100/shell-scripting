@@ -12,7 +12,7 @@ SGID=$(aws ec2 describe-security-groups --filters Name=group-name,Values=b53-all
 echo " AMI id is $AMI_ID "
 
 echo -n "Launching the instance with $AMI_ID as AMI:"
-aws ec2 run-instances --image-id $AMI_ID \
+IPADDRESS=$(aws ec2 run-instances --image-id $AMI_ID \
                     --instance-type t2.micro \
                     --security-group-ids ${SGID} \
                     --instance-market-options "MarketType=spot, SpotOptions={SpotInstanceType=persistent,InstanceInterruptionBehavior=stop}" \
