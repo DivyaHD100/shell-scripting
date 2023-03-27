@@ -11,4 +11,4 @@ AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-Cen
 echo " AMI id is $AMI_ID "
 
 echo -n "Launching the instance with $AMI_ID as AMI:"
-aws ec2 run-instances --image-id $AMI_ID --instance-type t2.micro --tag-specifications "ResourceType=instance, Tags=[{Key=name,Value=$COMPONENT}]"
+aws ec2 run-instances --image-id $AMI_ID --instance-type t2.micro --tag-specifications "ResourceType=instance,Tags=[{Key=name,Value=$COMPONENT}]"
