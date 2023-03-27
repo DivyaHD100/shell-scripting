@@ -13,7 +13,7 @@ echo " AMI id is $AMI_ID "
 
 echo -n "Launching the instance with $AMI_ID as AMI:"
 
-ec2 run-instances --image-id $AMI_ID \
+aws ec2 run-instances --image-id $AMI_ID \
                     --instance-type t2.micro \
                     --security-group-ids ${SGID} \
                     #--instance-market-options "MarketType=spot, SpotOptions={SpotInstanceType=persistent,InstanceInterruptionBehavior=stop}" \
