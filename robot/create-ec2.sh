@@ -12,6 +12,11 @@ SGID=$(aws ec2 describe-security-groups --filters Name=group-name,Values=b53-all
 echo " AMI id is $AMI_ID "
 
 echo -n "Launching the instance with $AMI_ID as AMI:"
+
+
+create_server() {
+
+    echo "*** Launching $COMPONENT server ***"
 IPADDRESS=$(aws ec2 run-instances --image-id $AMI_ID \
                     --instance-type t2.micro \
                     --security-group-ids ${SGID} \
@@ -20,3 +25,15 @@ IPADDRESS=$(aws ec2 run-instances --image-id $AMI_ID \
 
 sed -e "s/COMPONENT/${COMPONENT}/" -e  "s/IPADDRESS/${IPADDRESS}/" record.json > /tmp/r53.json
 aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONEID --change-batch file:///tmp/r53.json | jq
+    echo "*** $COMPONENT server completed ***"
+}
+
+if [ "$1" == "all" ] ; then
+    for component in frontend mongodb catalogue redis cart user mysql shipping rabbitmq payment ; do
+    COMPONENT=$component
+    create_server
+done
+
+else 
+   create_server
+fi 
