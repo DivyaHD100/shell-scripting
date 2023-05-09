@@ -2,7 +2,7 @@
 
 if [ -z "$1" ] || [ -z "$2" ]; then
     echo -e "\e[31m Component name is required \e[0m\t\t"
-    echo -e "\t\t\t \e[32m Sample usage is: $bash create-ec2.sh user dev \e[0m\t\t"
+    echo -e "\t\t\t \e[32m Sample usage is: $ bash create-ec2.sh user dev \e[0m\t\t"
     exit 1
 fi
 HOSTEDZONEID="Z01460382LDVHUYMKWW6K"
