@@ -22,11 +22,11 @@ Stat(){
 
 echo -n "Configuring $COMPONENT repo :"
 curl -L https://raw.githubusercontent.com/stans-robot-project/redis/main/redis.repo -o /etc/yum.repos.d/redis.repo &>> $LOGFILE
-stat $? 
+Stat $? 
 
 echo -n "Installing $COMPONENT server :"
 yum install redis-6.2.6 -y  &>> $LOGFILE
-stat $?
+Stat $?
 
 echo -n "Updating the $COMPONENT visibility:"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf
